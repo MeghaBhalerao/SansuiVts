@@ -1,0 +1,98 @@
+package vts.snystems.sns.vts.interfaces;
+
+/**
+ * Created by sns003 on 22-Mar-18.
+ */
+public interface Constants
+{
+    int monitorTimerDelay = 30000;
+    int timerDelay = 10000;
+    float plaback_cam_zhoom_lvl = 13.10f;
+    int plaback_delayed_sec = 3000;
+    int km_delayed_sec = 1000;
+    int TIME_PERIOD = 30000;
+    String NA = "NA";
+    String ZERO = "0";
+    String LTDATE_TIME = "0000-00-00 00:00:00";
+    String MAP_TYPE = "map_type";
+    String MAP_TYPE_NORMAL = "Normal";
+    String MAP_TYPE_SAT = "Satellite";
+    String MAP_TYPE_HY = "Hybrid";
+    String TYPE_DATA = "type_dd";
+    String PLAY_DIST = "pDist";
+    String LAST_UPDATE_DATE_TIME = "date_time";
+    String LATITUDE = "latitude";
+    String LONGITUDE = "longitude";
+    String NOTI_ALERT = "notiAlert";
+    String FUEL = "fuel";
+    String IGN_STATUS = "ign";
+    String POWER_STATUS = "power";
+    String GPS_STATUS = "gps";
+    String ICON_COLOR = "iconColor";
+    String VTYPE = "vehicleType";
+    String LAT_LONG = "lat_long";
+    String DEVICE_STATUS = "deviceStatus";
+    String COURSE = "course";
+    String FRG_FLAG = "fr_flag";
+    String IMAGE = "imageData";
+    String APP_LANGUAGE = "aLanguage";
+    String IMEI = "imei";
+    String SPEED = "speed";
+    String VEHICLE_NUMBER = "v_number";
+    String VEHICLE_NAME = "v_namee";
+    String VEHICLE_OVER_SPEED = "v_oSpeedl";
+    String vehicle_no = "vehicle_no";
+    String overspeed_value = "overspeed_value";
+    String target_name = "target_name";
+    String DASH_PREF = "dash_PREF";
+    String FRG_STATUS = "frgStatus";
+    String PREF_KEY = "pref_key";
+    String REMEMBER_PASSWORD = "remember_pass";
+    String USER_NAME = "username";
+    String PASSWORD = "password";
+    String VEHICLE_STATUS = "vehicleStatus";
+    String DAY_FLAG = "day_flag";
+    String EXP_LOG = "exception";
+    String createdDate = "created_date";
+    String ALL_C = "allChk";
+    String LOW_BAT_C = "lowBatChk";
+    String OVERSPEED_C = "overSpeedtChk";
+    String SOS_C = "sosChk";
+    String POWER_CUT_C = "pCutChk";
+    String IGNITION_C = "ignChk";
+    String LAST_NAME = "name";
+    String ADDRESS = "address";
+    String DATE = "date";
+    String SERVICE_FLAG = "service_flag";
+    String FROM_DATE = "from_date";
+    String TO_DATE = "to_date";
+    String OVERSPEED_DEFLT = "overSpeedtChk_deflt";
+    String IGNITION_DEFLT = "ignChk_deflt";
+    String uLocation = "Unknown location";
+    String SOS_FC = "fContact";
+    String SOS_SC = "sContact";
+    String SOS_TC = "tContact";
+
+    String webUrl = "http://sanoffunifi.dyndns.info:8100/sansui/vts_android_restapi/api/AndroidAPI/";
+    String validateLogin = "validateLogin";
+    String getVehicleGeofence = "getVehicleGeofence";
+    String updateVehicleInfo = "updateVehicleInfo";
+    String getLastLatLngByUsername = "getLastLatLngByUsername";
+    String insertAndroidLog = "insertAndroidLog";
+    String getVehicleInfo = "getVehicleInfo";
+    String getProfile = "getProfile";
+    String updateProfile = "updateProfile";
+    String getListView = "getListView";
+    String getAlertHistory = "getAlertHistory";
+    String getTravelSummary = "getTravelSummary";
+    String getDistanceSummary = "getDistanceSummary";
+    String getPlayBack = "getPlayBack";
+    String getVehicleNotification = "getVehicleNotification";
+    String getVehicleStatusInfo = "getVehicleStatusInfo";
+    String getVehicleStatus = "getVehicleStatus";
+    String getAllLatLng = "getAllLatLng";
+    String getDeviceLastData_v16 = "getDeviceLastData_v16";
+    String getDeviceFuel_v16 = webUrl+"getDeviceFuel_v16";
+    String getDeviceOdometer_v16 = webUrl+"getDeviceOdometer_v16";
+    String getDeviceLastTrip_v16 = webUrl+"getDeviceLastTrip_v16";
+}
