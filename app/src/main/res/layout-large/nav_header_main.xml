@@ -22,7 +22,7 @@
                 android:layout_width="150pt"
                 android:layout_height="100pt"
                 android:layout_margin="5pt"
-                app:srcCompat="@drawable/ic_logo_orange" />
+                app:srcCompat="@drawable/benosys_logo_white" />
 
         </LinearLayout>
 

@@ -264,10 +264,6 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
 
             RequestQueue requestQueue = null;
             String url = Constants.getDeviceLastTrip_v16;
-            M.e("getDeviceLastTrip_v16 : "+url);
-            M.e("last trip imei : "+IMEI);
-
-
             lastTripDistane.setText("Please wait...");
             lastTripParkTime.setText("Please wait...");
             lastTripDuration.setText("Please wait...");

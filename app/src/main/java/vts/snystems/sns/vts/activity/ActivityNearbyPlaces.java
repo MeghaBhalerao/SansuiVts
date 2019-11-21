@@ -36,6 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import vts.snystems.sns.vts.BuildConfig;
 import vts.snystems.sns.vts.R;
 import vts.snystems.sns.vts.classes.F;
 import vts.snystems.sns.vts.classes.M;
@@ -197,15 +198,14 @@ public class ActivityNearbyPlaces extends FragmentActivity implements OnMapReady
         String lng = MyApplication.prefs.getString(Constants.LONGITUDE,"0");
         String vType = MyApplication.prefs.getString(Constants.VTYPE,"");
 
-        String api_key = getResources().getString(R.string.google_maps_key);
+
         if(typeSearch.equals("Restaurants"))
         {
-
             LatLng latlng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
          //   F.setMarkerVehicleIconType(vType,mMap,latlng);
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 11));
-            String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=10000&type=restaurant&sensor=true&key=" + api_key;
+            String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=10000&type=restaurant&sensor=true&key=" + BuildConfig.GoogleSecAPIKEY;
 
             mMap.clear();
             Object[] DataTransfer = new Object[3];
@@ -221,7 +221,7 @@ public class ActivityNearbyPlaces extends FragmentActivity implements OnMapReady
         {
 
            // String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=10000&type=gas_stations&sensor=true&key=" + api_key;
-            String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=10000&type=gas_station&sensor=true&key="+ api_key;
+            String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=10000&type=gas_station&sensor=true&key="+ BuildConfig.GoogleSecAPIKEY;
 
             mMap.clear();
             Object[] DataTransfer = new Object[3];
@@ -318,9 +318,7 @@ public class ActivityNearbyPlaces extends FragmentActivity implements OnMapReady
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_petrol_pumps)));
                 }
 
-                //move map camera
-                //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
             }
 
 
@@ -345,68 +343,16 @@ public class ActivityNearbyPlaces extends FragmentActivity implements OnMapReady
 
     @Override
     public void onConnected(Bundle bundle) {
-       /* mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(1000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }*/
+
     }
 
-    private String getUrl(double latitude, double longitude, String nearbyPlace) {
 
-        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlacesUrl.append("location=" + latitude + "," + longitude);
-        googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);
-        googlePlacesUrl.append("&type=" + nearbyPlace);
-        googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key=" + "AIzaSyATuUiZUkEc_UgHuqsBJa1oqaODI-3mLs0");
-        Log.d("getUrl", googlePlacesUrl.toString());
-        return (googlePlacesUrl.toString());
-    }
 
     @Override
     public void onConnectionSuspended(int i) {
 
     }
 
-    /*@Override
-    public void onLocationChanged(Location location) {
-        Log.d("onLocationChanged", "entered");
-
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-
-        //Place current location marker
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
-
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-        Toast.makeText(ActivityNearbyPlaces.this,"Your Current Location", Toast.LENGTH_LONG).show();
-
-        Log.d("onLocationChanged", String.format("latitude:%.3f longitude:%.3f",latitude,longitude));
-
-        //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            Log.d("onLocationChanged", "Removing Location Updates");
-        }
-        Log.d("onLocationChanged", "Exit");
-
-    }*/
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -415,36 +361,7 @@ public class ActivityNearbyPlaces extends FragmentActivity implements OnMapReady
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            // Asking user if explanation is needed
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //Prompt the user once explanation has been shown
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

@@ -69,6 +69,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.nitri.gauge.Gauge;
+import vts.snystems.sns.vts.BuildConfig;
 import vts.snystems.sns.vts.R;
 import vts.snystems.sns.vts.classes.F;
 import vts.snystems.sns.vts.classes.M;
@@ -181,25 +182,6 @@ public class PlaybackFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-        /*gauge1.moveToValue(800);
-
-        HandlerThread thread = new HandlerThread("GaugeDemoThread");
-        thread.start();
-        Handler handler = new Handler(thread.getLooper());
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gauge1.moveToValue(300);
-            }
-        }, 2800);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gauge1.moveToValue(550);
-            }
-        }, 5600);*/
-
         gauge1.setLowerText(value+" Km/h");
         HandlerThread gauge3Thread = new HandlerThread("Gauge3DemoThread");
         gauge3Thread.start();
@@ -220,71 +202,7 @@ public class PlaybackFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-
       // gauge4.setValue(333);
-    }
-
-    private void displayDistance()
-    {
-
-       // LatLng first = null,second = null;
-        double route_distance = 0;
-        ArrayList<LatLng> DATAA = new ArrayList<>();
-
-        DATAA.add(new LatLng(18.489910,73.857444));
-        DATAA.add(new LatLng(18.490760,73.857578));
-        DATAA.add(new LatLng(18.491943,73.857621));
-        DATAA.add(new LatLng(18.493277,73.857739));
-        DATAA.add(new LatLng(18.494480,73.857911));
-        DATAA.add(new LatLng(18.496195,73.857986));
-        DATAA.add(new LatLng(18.498173,73.858168));
-        DATAA.add(new LatLng(18.499971,73.858468));
-        DATAA.add(new LatLng(18.500551,73.858045));
-        DATAA.add(new LatLng(18.500892,73.856312));
-        DATAA.add(new LatLng(18.501235,73.854692));
-        DATAA.add(new LatLng(18.501606,73.853925));
-        DATAA.add(new LatLng(18.502794,73.853818));
-        DATAA.add(new LatLng(18.504590,73.853603));
-        DATAA.add(new LatLng(18.505889,73.853614));
-        DATAA.add(new LatLng(18.507308,73.853732));
-        DATAA.add(new LatLng(18.509205,73.853753));
-        DATAA.add(new LatLng(18.511008,73.853796));
-        DATAA.add(new LatLng(18.513010,73.853844));
-        DATAA.add(new LatLng(18.514530,73.853775));
-        DATAA.add(new LatLng(18.516040,73.853796));
-        DATAA.add(new LatLng(18.517690,73.853986));
-        DATAA.add(new LatLng(18.518428,73.854142));
-
-
-        try
-        {
-            for (int i = 0; i < DATAA.size(); i++)
-            {
-                //first = second;
-               // second = DATAA.get(i);
-
-                double distanceD = F.getDistance(DATAA.get(i),DATAA.get(i+1));
-
-                // distanceDfd = distanceDfd + distanceD;
-
-                //route_distance = route_distance + distanceD;
-
-                double distanceKm = distanceD / 1000;
-
-                route_distance = route_distance + distanceKm;
-
-                Log.e("DISTANCE_DATA",""+route_distance);
-            }
-
-
-
-
-
-        }
-        catch (Exception e)
-        {
-            Log.e("DISTANCE_DATA","amol");
-        }
     }
 
     private void parseDeviceLatLang(String response_lat_lang) {
@@ -378,51 +296,19 @@ public class PlaybackFragment extends Fragment implements OnMapReadyCallback {
         String sensor = "sensor=false&mode=driving";
         //String sensor = "sensor=false&mode=walking";
         String params = OriDest + "&" + "waypoints=optimize:true" + urlString + "&"
-                + sensor + "&key=" + MyApplication.context.getResources().getString(R.string.google_maps_key);
+                + sensor + "&key=" + BuildConfig.GoogleSecAPIKEY;
         String output = "json";
         String url = "https://maps.googleapis.com/maps/api/directions/"+ output + "?" + params;
         Log.d("url>>>", ">>" + url);
         return url;
     }
 
-    int cnt = 0;
+
 
     private void setListners() {
 
 
-        /*buttonVehiclePos.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
 
-
-
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(marker.getPosition(), mMap.getCameraPosition().zoom);
-                // CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(newPos, Constants.plaback_cam_zhoom_lvl);
-                mMap.animateCamera(cameraUpdate);
-            }
-        });*/
-
-
-       /* mapTypeLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (cnt == 0) {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                    mapTypeTextView.setText("Map");
-                    mapTypeImageView.setImageResource(R.drawable.ic_map_view);
-                    mapTypeTextView.setTextColor(Color.parseColor("#000000"));
-                    cnt = 1;
-                } else if (cnt == 1) {
-                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                    mapTypeTextView.setText("Satellite");
-                    mapTypeImageView.setImageResource(R.drawable.ic_stattelite_view);
-                    mapTypeTextView.setTextColor(Color.parseColor("#ffffff"));
-                    cnt = 0;
-                }
-            }
-        });*/
 
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -549,8 +435,7 @@ public class PlaybackFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    private void showToast(String s) {
-    }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

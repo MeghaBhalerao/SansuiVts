@@ -16,13 +16,14 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="60pt"
+
             android:gravity="center">
 
             <ImageView
                 android:layout_width="100pt"
                 android:layout_height="wrap_content"
-
-                app:srcCompat="@drawable/ic_logo_orange" />
+                android:layout_marginTop="5pt"
+                app:srcCompat="@drawable/benosys_logo_white" />
 
         </LinearLayout>
 
